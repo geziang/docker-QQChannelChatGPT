@@ -9,8 +9,7 @@ RUN apk add --no-cache git \
     useradd -u 911 -U -s /bin/false -m -d /config abc && \
     usermod -G users abc
 
-RUN cd /app && \
-    python -m pip install --upgrade pip && \
+RUN python -m pip install --upgrade pip && \
     pip install -r https://github.com/Soulter/QQChannelChatGPT/raw/master/requirements.txt
 
 VOLUME /app
