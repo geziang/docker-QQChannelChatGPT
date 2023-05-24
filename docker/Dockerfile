@@ -20,7 +20,8 @@ RUN python -m pip install --upgrade pip && \
         chardet~=5.1.0 \
         Pillow~=9.4.0 \
         GitPython~=3.1.31 \
-        nakuru-project-idk~=0.0.2 \
+        nakuru-project-idk~=0.0.2
+
 
 FROM python:3.10-slim-bullseye
 
