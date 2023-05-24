@@ -3,7 +3,7 @@
 FROM python:3.10-slim-bullseye as builder
 
 RUN apt-get update && apt-get install -y gcc curl \
-    zlib1g-dev
+    zlib1g-dev libjpeg-dev libjpeg62-turbo-dev 
 # RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && apt-get install --reinstall libc6-dev -y
 # ENV PATH="/root/.cargo/bin:${PATH}"
 # RUN --security=insecure mkdir -p /root/.cargo && \
