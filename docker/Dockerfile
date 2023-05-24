@@ -1,4 +1,11 @@
-FROM python:3.10-slim-bullseye
+FROM python:3.11-slim-bullseye as builder
+
+RUN apt-get update && apt-get install -y gcc curl
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && apt-get install --reinstall libc6-dev -y
+ENV PATH="/root/.cargo/bin:${PATH}"
+RUN pip install --upgrade pip && pip install -r https://github.com/Soulter/QQChannelChatGPT/raw/master/requirements.txt
+
+FROM python:3.11-slim-bullseye
 
 RUN apt-get update && apt-get install -y \
     coreutils \
@@ -9,6 +16,9 @@ RUN apt-get update && apt-get install -y \
     usermod -G users abc && \
     rm -rf /var/lib/apt/lists/*
 
+# Copy pre-built packages from builder stage
+COPY --from=builder /usr/local/lib/python3.11/site-packages/ /usr/local/lib/python3.11/site-packages/
+# Now install packages as normal — tiktoken will already be installed and skipped if present in requirements.txt
 RUN python -m pip install --upgrade pip && \
     pip install -r https://github.com/Soulter/QQChannelChatGPT/raw/master/requirements.txt
 
