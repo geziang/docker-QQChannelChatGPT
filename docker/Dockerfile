@@ -6,10 +6,9 @@ RUN apt-get update && apt-get install -y gcc curl \
     zlib1g-dev libjpeg-dev libjpeg62-turbo-dev 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && apt-get install --reinstall libc6-dev -y
 ENV PATH="/root/.cargo/bin:${PATH}"
-RUN mkdir -p /tmp/.cargo && \
-    ln -s /tmp/.cargo /root/.cargo && \
-    chmod 777 /root/.cargo && \
-    pip install --upgrade pip && pip install -r https://github.com/Soulter/QQChannelChatGPT/raw/master/requirements.txt
+ENV CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
+
+RUN pip install --upgrade pip && pip install -r https://github.com/Soulter/QQChannelChatGPT/raw/master/requirements.txt
 
 
 FROM python:3.10-slim-bullseye
