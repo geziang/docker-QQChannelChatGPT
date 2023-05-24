@@ -1,4 +1,4 @@
-name: Build NAStool Enhanced Image
+name: Build QQChannelChatGPT Image
 
 on:
   push:
