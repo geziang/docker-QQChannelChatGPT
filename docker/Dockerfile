@@ -6,9 +6,9 @@ RUN apt-get update && apt-get install -y gcc curl \
     zlib1g-dev libjpeg-dev libjpeg62-turbo-dev 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && apt-get install --reinstall libc6-dev -y
 ENV PATH="/root/.cargo/bin:${PATH}"
-RUN mkdir -p /root/.cargo && \
+RUN mkdir -p /tmp/.cargo && \
+    ln -s /tmp/.cargo /root/.cargo && \
     chmod 777 /root/.cargo && \
-    mount -t tmpfs none /root/.cargo && \
     pip install --upgrade pip && pip install -r https://github.com/Soulter/QQChannelChatGPT/raw/master/requirements.txt
 
 
