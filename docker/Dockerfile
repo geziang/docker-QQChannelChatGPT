@@ -25,8 +25,7 @@ RUN apt-get update && apt-get install -y \
 # Copy pre-built packages from builder stage
 COPY --from=builder /usr/local/lib/python3.10/site-packages/ /usr/local/lib/python3.10/site-packages/
 # Now install packages as normal — tiktoken will already be installed and skipped if present in requirements.txt
-RUN python -m pip install --upgrade pip && \
-    pip install -r https://github.com/Soulter/QQChannelChatGPT/raw/master/requirements.txt
+RUN python -m pip install --upgrade pip wheel setuptools
 
 VOLUME /app
 
