@@ -15,7 +15,7 @@ FROM python:3.10-slim-bullseye
 
 RUN apt-get update && apt-get install -y \
     coreutils tzdata \
-    zlib1g libjpeg libjpeg62-turbo && \
+    git zlib1g libjpeg62-turbo && \
     echo "**** create abc user and make our folders ****" && \
     groupmod -g 1000 users && \
     useradd -u 911 -U -s /bin/false -m -d /app abc && \
