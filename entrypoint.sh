@@ -10,4 +10,4 @@ usermod -o -u "$PUID" abc
 export HOME=/app
 cd $HOME
 
-s6-applyuidgid -u "$PUID" -g "$PGID" $@
+runuser -u abc -g abc -- $@
